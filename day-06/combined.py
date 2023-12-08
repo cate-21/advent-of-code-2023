@@ -11,7 +11,7 @@ def quadratic_solution(t: int, d: int) -> int:
     else:
         return 1
     
-def part_one(times: list, distances: int):
+def part_one(times: list, distances: int) -> int:
     product_variation = 1
     
     for t, d in zip(times, [distance + 1 for distance in distances]):
@@ -19,7 +19,7 @@ def part_one(times: list, distances: int):
 
     return product_variation
 
-def part_two(times: list, distances: int):
+def part_two(times: list, distances: int) -> int:
      
     time = int(''.join([str(t) for t in times]))
     distance = int(''.join([str(d) for d in distances]))

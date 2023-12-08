@@ -1,10 +1,6 @@
 from collections import Counter
 from functools import reduce
 
-def sort_hand(hand: tuple) -> list:
-    rank_order = "AKQT98765432J"
-    return [rank_order.index(card) for card in hand[0]]
-
 def sort_hands(hands_bids: list) -> list:
 
     TOTAL_TYPES = 7
@@ -31,7 +27,7 @@ def sort_hands(hands_bids: list) -> list:
                 break
     
     for card_type in card_types:
-        card_type.sort(key=sort_hand)
+        card_type.sort(key=lambda hand: ["AKQT98765432J".index(card) for card in hand[0]])
 
     return list(reduce(lambda x, y: x + y, card_types))[::-1]
 

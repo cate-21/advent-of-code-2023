@@ -1,4 +1,5 @@
 import re
+from importlib import import_module
 
 def apply_mapping(boundary: list, mapping: list) -> list:
     for map_dest, map_source, map_span in mapping:
@@ -6,20 +7,6 @@ def apply_mapping(boundary: list, mapping: list) -> list:
             return [map_dest + (boundary[0] - map_source), 
                     map_dest + (boundary[1] - map_source)]
     return boundary
-
-def format_almanac(lines: str) -> dict:
-    almanac = {}
-
-    for line in lines[2:]:
-        line = line.strip()
-
-        if ':' in line:
-            current_category = line.split(':')[0].strip()
-            almanac[current_category] = []
-        elif line and current_category:
-            almanac[current_category].append([int(x) for x in line.split()])
-
-    return almanac
 
 def split_and_map(boundary: list, mappings: list) -> list:
     overlap = []
@@ -47,7 +34,7 @@ def main():
     seeds = [int(num) for num in re.findall(r'\d+', lines[0])]
     seed_ranges = [[seeds[i], seeds[i] + seeds[i + 1]] for i in range(0, len(seeds), 2)]
 
-    almanac = format_almanac(lines)
+    almanac = import_module('1').format_almanac(lines)
 
     all_location_ranges = []
 
